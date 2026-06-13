@@ -53,26 +53,52 @@ High-quality RAG requires reliable file parsing, semantic chunking boundaries, h
 You can include:
 
 * How you understood the problem
+The primary challenge was creating a reliable knowledge assistant that could provide accurate answers while minimizing hallucinations. The solution needed to support multiple document formats, preserve context during retrieval, enforce access controls, and remain lightweight enough to deploy without complex infrastructure.
+
 * What user flow you designed
+Document Upload (Slack or Dashboard)
+→ Intelligent File Parsing
+→ Semantic Chunking & Indexing
+→ Hybrid Search (Vector + Keyword)
+→ Context Retrieval
+→ LLM Response Generation
+→ Source-Cited Answer Returned to Slack
+
 * What features you decided to build
+Multi-format document ingestion and parsing
+Intelligent sentence-aware chunking
+Hybrid vector and keyword search
+Multi-turn conversational context handling
+Access control and permission filtering
+Source citations with similarity confidence scores
+Administrative dashboard for knowledge management
+Slack-native command interface
+
 * How AI is used in your solution
+AI is used throughout the retrieval and response pipeline:
+sentence-transformers (all-MiniLM-L6-v2) generates semantic embeddings for document understanding.
+rank_bm25 provides keyword-based retrieval.
+llama3.2:3b via Ollama generates grounded answers, summaries, tags, and conversational responses.
+Hybrid retrieval ensures answers are based on relevant organizational documents rather than model memory.
+
 * What makes your approach useful or different
+Most RAG systems rely on dedicated vector databases that increase deployment complexity and often require additional setup dependencies.
+Stine Bot uses a custom SQLite-based retrieval architecture combined with Reciprocal Rank Fusion (RRF) to deliver high-quality retrieval while remaining lightweight, portable, and easy to run locally. This significantly reduces setup friction while maintaining strong retrieval performance.
 
-Write your answer here.
 
----
+
 
 ## Tech Stack and Tools Used
 
 Mention the tools, technologies, frameworks, and platforms you used.
 
 
-**Frontend:** React, Next.js, HTML, CSS, Tailwind, Material UI
-**Backend:** Node.js, Express, FastAPI, Django, Flask
-**Database:** MongoDB, PostgreSQL, Firebase, Supabase
-**AI Tools/API:** OpenAI, Gemini, Claude, Llama,
-**Cloud/Deployment:** Vercel, Netlify, Render, Railway, AWS, GCP
-**Other Tools:**VScode, GitHub Copilot, Anti-Gravity CLI , 
+**Frontend:** React, HTML, CSS, Tailwind, 
+**Backend:**  FastAPI, Python (Uvicorn), Slack Bolt SDK (Socket Mode)
+**Database:**  PostgreSQL,SQLite
+**AI Tools/API:** OpenAI, Slack ,Llama,
+**Cloud/Deployment:** Vercel, Netlify, Render, Railway
+**Other Tools:**VScode, GitHub Copilot, Anti-Gravity CLI ,PyPDF, python-docx, python-pptx, BeautifulSoup4
 
 ---
 
@@ -80,35 +106,32 @@ Mention the tools, technologies, frameworks, and platforms you used.
 
 List the key features of your project.
 
-Example:
 
-1. Feature one
-2. Feature two
-3. Feature three
 
-Write your features here:
-
-1.
-2.
-3.
-
----
+1. Robust Multi-format File Ingest: Automatic text extraction from PDF, DOCX, PPTX, TXT, MD, and CSV.
+2. SQLite Reciprocal Rank Fusion (RRF) Hybrid Search:  Blends vector semantic matches with BM25 Okapi keywords for precision.
+3. Similarity Refusal Guard Automatic rejection of low-confidence questions :(similarity score < 0.6) with a polite notification.
+4. Access Control Scoping : Personal (owner-only), Team (channel-only), and Org-wide (all users) access boundaries.
+5. Contextual Multi-turn QA: Automatically builds conversational queries using recent context for re-retrieval.
+6. LLM Fallback Search: Falls back to returning raw document text segments if the local LLM is temporarily offline.
 
 ## What is Working?
 
-Mention what is currently working in your project.
+ Complete dependency setup and server execution on Windows without Visual C++ issues.
+* Document upload, tagging, and stats aggregation API endpoints.
+* PDF, DOCX, PPTX, TXT, CSV parsing and indexing.
+* Smart sentence boundaries sliding window chunking.
+* Hybrid Vector & BM25 retrieval with security scope filters.
+* Grounded response generation with citation similarity scores (e.g. `Source: filename.pdf (similarity: 0.85)`).
+* Slack Slash commands: `/ask`, `/upload`, `/summary`, `/kb-help`.
+* Administrative React dashboard UI.
 
-This is important even if your project is incomplete.
-
-Write your answer here.
-
----
 
 ## What is Still in Progress?
 
-Mention what you are still building or planning to improve.
+ Advanced OCR support for scanned images or PDFs containing image text.
+* Adding a dashboard management settings screen to configure access roles.
 
-Write your answer here.
 
 ---
 
@@ -124,11 +147,8 @@ Add screenshots, demo video link, or deployed project link if available.
 
 ## Challenges Faced
 
-Mention any challenges you faced while building this project.
-
-Write your answer here.
-
----
+nswlib Build Failure:** Installing `chromadb` on Windows triggers a wheel compilation step for `chroma-hnswlib` requiring C++ Build Tools. This was resolved by designing a custom vector store backed by standard SQLite, utilizing `sentence-transformers` and `rank_bm25` in pure Python, removing compile dependencies.
+* **Dense/Sparse Score Merging:** Normalizing and adding scores from Vector and BM25 is mathematically difficult. We resolved this by implementing Reciprocal Rank Fusion (RRF) to blend rankings rather than scores.
 
 ## Learnings
 
