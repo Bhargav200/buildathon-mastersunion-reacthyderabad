@@ -1,0 +1,153 @@
+Project Submission Template
+
+PS#02
+Intelligent Slack Knowledge Base_BhargavRaviTeja.md
+
+# Project Name =  Intelligent Slack Knowledge Base
+
+## Attendee Details
+
+**Name:** Bhargav Ravi Teja
+**GitHub Username:** Bhargav200
+**LinkedIn Profile:** https://www.linkedin.com/in/bhargavraviteja/
+**GitHub Project Repository:** https://github.com/Bhargav200/Intelligent-Slack-Knowledge-Base_BhargavRaviTeja
+---
+
+## Problem Statement Selected
+
+Intelligent Slack Knowledge Base
+Your company's knowledge — searchable, summarisable, and always at hand
+---
+
+## Project Description
+
+Stine Bot is an Intelligent Slack-native AI Knowledge Base assistant that transforms scattered company documentation into a highly queryable, conversational intelligence system. Users can upload various files or text layers directly via Slack or an administrative React dashboard, and retrieve precise, grounded answers in natural language.
+
+
+
+Try to answer:
+
+* What is the project about?
+
+An AI-powered RAG (Retrieval-Augmented Generation) bot integrated directly into Slack and a web dashboard for organization-wide documentation search.
+
+* Who is it for?
+Organizations, engineering teams, and customer support staff needing immediate, reliable answers from technical docs, policies, onboarding guides, and slides.
+
+* What problem does it solve?
+It breaks down information silos (PDFs, docs, presentations scattered across folders) and minimizes interruption costs between team members looking for institutional answers.
+
+* How does it help the user?
+It breaks down information silos (PDFs, docs, presentations scattered across folders) and minimizes interruption costs between team members looking for institutional answers.
+
+Write your answer here.
+
+---
+
+## Approach
+
+Explain how you approached the problem.
+High-quality RAG requires reliable file parsing, semantic chunking boundaries, hybrid keyword + vector search, strict hallucination guards (similarity thresholds), permission scoping, and simple installation.
+
+
+You can include:
+
+* How you understood the problem
+* What user flow you designed
+* What features you decided to build
+* How AI is used in your solution
+* What makes your approach useful or different
+
+Write your answer here.
+
+---
+
+## Tech Stack and Tools Used
+
+Mention the tools, technologies, frameworks, and platforms you used.
+
+
+**Frontend:** React, Next.js, HTML, CSS, Tailwind, Material UI
+**Backend:** Node.js, Express, FastAPI, Django, Flask
+**Database:** MongoDB, PostgreSQL, Firebase, Supabase
+**AI Tools/API:** OpenAI, Gemini, Claude, Llama,
+**Cloud/Deployment:** Vercel, Netlify, Render, Railway, AWS, GCP
+**Other Tools:**VScode, GitHub Copilot, Anti-Gravity CLI , 
+
+---
+
+## Key Features
+
+List the key features of your project.
+
+Example:
+
+1. Feature one
+2. Feature two
+3. Feature three
+
+Write your features here:
+
+1.
+2.
+3.
+
+---
+
+## What is Working?
+
+Mention what is currently working in your project.
+
+This is important even if your project is incomplete.
+
+Write your answer here.
+
+---
+
+## What is Still in Progress?
+
+Mention what you are still building or planning to improve.
+
+Write your answer here.
+
+---
+
+## Screenshots or Demo
+
+Add screenshots, demo video link, or deployed project link if available.
+
+**Deployed Link:**
+**Demo Video Link:**
+**Screenshots:**
+
+---
+
+## Challenges Faced
+
+Mention any challenges you faced while building this project.
+
+Write your answer here.
+
+---
+
+## Learnings
+
+Mention what you learned while building this project.
+
+Write your answer here.
+
+---
+
+## Future Improvements
+
+Mention what you would improve if you had more time.
+
+Write your answer here.
+
+---
+
+## Final Note
+
+Use this space to add anything else you want mentors, judges, or the community to know about your project.
+
+Write your answer here.
